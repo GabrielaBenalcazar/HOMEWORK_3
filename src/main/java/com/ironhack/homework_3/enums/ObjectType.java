@@ -1,10 +1,17 @@
 package com.ironhack.homework_3.enums;
 
+
+import lombok.Getter;
+
+@Getter
 public enum ObjectType {
     ACCOUNT("ACCOUNT", "ACCOUNTS"),
     CONTACT("CONTACT", "CONTACTS"),
     LEAD("LEAD", "LEADS"),
-    OPPORTUNITY("OPPORTUNITY", "OPPORTUNITIES");
+    OPPORTUNITY("OPPORTUNITY", "OPPORTUNITIES"),
+
+    SALESREP("SALESREP", "SALESREPS");
+
 
     private String singularForm;
     private String pluralForm;
@@ -14,11 +21,5 @@ public enum ObjectType {
         this.pluralForm = pluralForm;
     }
 
-    public String getSingularForm() {
-        return singularForm;
-    }
 
-    public String getPluralForm() {
-        return pluralForm;
-    }
 }

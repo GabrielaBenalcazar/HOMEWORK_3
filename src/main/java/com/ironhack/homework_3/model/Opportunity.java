@@ -4,8 +4,6 @@ package com.ironhack.homework_3.model;
 import com.ironhack.homework_3.enums.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,7 +22,7 @@ public class Opportunity {
     private Contact decisionMaker;
     @ManyToOne
     @JoinColumn(name = "sales_reps_id")
-    private SalesReps salesReps;
+    private SalesRep salesReps;
 
     @Enumerated(value = EnumType.STRING)
     private Status status;
@@ -38,7 +36,7 @@ public class Opportunity {
 
     //Constructor
 
-    public Opportunity(Product product, int quantity, Contact decisionMaker, SalesReps salesReps, Status status) {
+    public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesReps, Status status) {
 
         this.product = product;
         this.quantity = quantity;
@@ -108,11 +106,11 @@ public class Opportunity {
     public Status getStatus() {
         return status;
     }
-    public SalesReps getSalesReps() {
+    public SalesRep getSalesReps() {
         return salesReps;
     }
 
-    public void setSalesReps(SalesReps salesReps) {
+    public void setSalesReps(SalesRep salesReps) {
         this.salesReps = salesReps;
     }
     public Account getAccount() {

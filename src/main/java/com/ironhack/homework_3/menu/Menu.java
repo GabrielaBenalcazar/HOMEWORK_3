@@ -3,7 +3,6 @@ package com.ironhack.homework_3.menu;
 import com.ironhack.homework_3.style.Style;
 import com.ironhack.homework_3.model.*;
 import com.ironhack.homework_3.enums.*;
-import com.ironhack.homework_3.io.FileManager;
 
 import java.util.Objects;
 
@@ -54,7 +53,7 @@ public class Menu {
 
         switch (command) {
             case NEW:
-                objectType = input.getObjectTypeFromStringSingular(inputList[1]);
+                objectType = input.getObjectTypeFromString(inputList[1]);
                 if (Objects.isNull(objectType)) {
                     printer.printTypoInfo(inputList[1]);
                 } else {

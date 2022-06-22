@@ -5,7 +5,7 @@ import java.util.Set;
 
 @Entity
 
-public class SalesReps {
+public class SalesRep {
     //Properties
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // = AUTO_INCREMENT
@@ -20,11 +20,11 @@ public class SalesReps {
 
     //Constructor
 
-    public SalesReps() {
+    public SalesRep() {
 
     }
 
-    public SalesReps(String name) {
+    public SalesRep(String name) {
         this.name = name;
     }
 

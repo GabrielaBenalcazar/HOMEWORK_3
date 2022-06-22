@@ -2,9 +2,7 @@ package com.ironhack.homework_3.model;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +21,7 @@ public class Lead  {
 
     @ManyToOne
     @JoinColumn(name = "sales_reps_id")
-    private SalesReps salesReps;
+    private SalesRep salesReps;
 
 
 
@@ -31,7 +29,7 @@ public class Lead  {
     // Constructor
 
 
-    public Lead( String name, String phoneNumber, String email, String companyName, SalesReps salesReps) {
+    public Lead( String name, String phoneNumber, String email, String companyName, SalesRep salesReps) {
 
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -109,11 +107,11 @@ public class Lead  {
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
-    public SalesReps getSalesReps() {
+    public SalesRep getSalesReps() {
         return salesReps;
     }
 
-    public void setSalesReps(SalesReps salesReps) {
+    public void setSalesReps(SalesRep salesReps) {
         this.salesReps = salesReps;
     }
 
