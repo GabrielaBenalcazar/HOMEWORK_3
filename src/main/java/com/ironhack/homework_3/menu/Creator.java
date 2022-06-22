@@ -4,15 +4,48 @@ import com.ironhack.homework_3.model.*;
 import com.ironhack.homework_3.enums.*;
 import com.ironhack.homework_3.style.Style;
 
+import java.util.NoSuchElementException;
+
 public class Creator {
 
         private Input input;
         private Output printer;
 
-        public Creator(Input input, Output printer) {
-            this.input = input;
-            this.printer = printer;
-        }
+//        public Creator(Input input, Output printer) {
+//            this.input = input;
+//            this.printer = printer;
+//        }
+
+    // Method used to create a SALES REP independently
+//    public void createSalesRep()
+
+    // Method used to create a LEAD independently
+//    public void createLead() {
+        // First it is checked if there is any Sales Rep as we need to associate one to our Lead.
+        // Then, the user is asked for all the necessary info
+
+    // Method used to create a CONTACT independently
+      publi lead createCOntact
+        // First it is checked if there is any Lead and any Account as we need to associate one of each to our Contact.
+          // Then, the user is asked for all the necessary info
+
+
+
+    //  Method that creates a CONTACT automatically when LEAD is converted, creating a new ACCOUNT
+//    public void createContact(Lead ) {
+        // This method is implemented right after the createAccount(Lead lead) method, triggered by the "convert <id number>" command.
+        // This means that the Account associated is the last one saved in the accountRepository.
+                // New CONTACT Object saved in database with the LEAD information
+        // Print a CONTACT creation message
+
+    //  Method that creates a CONTACT automatically when LEAD is converted, selecting an existing ACCOUNT
+    public void createContact(Lead lead, Account account) {
+        // This method is triggered by selecting that you do not want to create a new Account
+        // New CONTACT Object saved in database with the LEAD information
+        // Print a CONTACT creation message
+
+
+
 
         // Method used automatically when LEAD is converted
         public void createAccount(Lead lead) {
@@ -57,9 +90,9 @@ public class Creator {
 
             } while (!errorCountry);
 
-            Account account = new Account((Contact) Contact.allContacts.get(Contact.allContacts.size()-1),
-                    (Opportunity) Opportunity.allOpportunities.get(Opportunity.allOpportunities.size()-1),
-                    industry, employeeCount, city, country);
+//            Account account = new Account((Contact) Contact.allContacts.get(Contact.allContacts.size()-1),
+//                    (Opportunity) Opportunity.allOpportunities.get(Opportunity.allOpportunities.size()-1),
+//                    industry, employeeCount, city, country);
             System.out.println("\nNew ACCOUNT created:");
             System.out.println(account.toString());
 
@@ -254,4 +287,86 @@ public class Creator {
             System.out.println("\nNew OPPORTUNITY created as follows:");
             System.out.println(opportunity);
         }
+
+
+           // First it is checked if there is any Contact and Sales Rep as we need to associate one of each to our Opportunity.
+        // Then, the user is asked for all the necessary info
+            // Since decisionMaker and opportunity have a oneToOne relationship, it must be ensured that the contact exists
+            // and is not previously linked to any other opportunity.
+        // Determine whether or not that contact exists in the database
+         // Determine if the contact has been previously linked to another opportunity
+         // Ask if the user wants to come back to the main menu
+          // New OPPORTUNITY Object saved in database
+         // Print an OPPORTUNITY creation message
+
+
+
+        // Method that creates an OPPORTUNITY when LEAD is converted, creating a new ACCOUNT
+//        public void createOpportunityByLeadConversion(Lead lead) {
+             // This method is implemented right after the createContact(Lead lead) method and the createAccount(Lead lead) method,
+            // triggered by the "convert <id number>" command. This means that the Contact associated with this Opportunity is the
+            // last one saved in the contactRepository and the Account associated is the last one saved in the accountRepository.
+            // New OPPORTUNITY Object saved in database
+            // Print an OPPORTUNITY creation message
+
+
+
+
+        // Method that creates an OPPORTUNITY when LEAD is converted, selecting an existing ACCOUNT
+//        public void createOpportunityByLeadConversion(Lead lead, Account account) {
+               // This method is implemented right after the createContact(Lead lead) method triggered by the "convert <id number>" command.
+            // This means that the Contact associated with this Opportunity is the last one saved in the contactRepository.
+            // New OPPORTUNITY Object saved in database
+            // Print an OPPORTUNITY creation message
+
+
+
+
+
+        // Utility methods  ((( COPY PASTE))))
+
+        // Requests an ACCOUNT id and validates whether or not it exists in the database
+//        public int getExistingAccount()
+
+//        // Requests a LEAD id and validates whether or not it exists in the database
+//        public int getExistingLead()
+
+//        // Requests a LEAD id and validates whether or not it exists in the database
+//        public int getExistingSalesRep()
+
+
+
+//        // _SHOW functionality methods_
+//
+//        public void printAllAccounts() {
+//            for (Account account : accountRepository.findAll()) {
+//                System.out.println(account);
+//            }
+//        }
+//
+//        public void printAllContacts() {
+//            for (Contact contact : contactRepository.findAll()) {
+//                System.out.println(contact);
+//            }
+//        }
+//
+//        public void printAllLeads() {
+//            for (Lead lead : leadRepository.findAll()) {
+//                System.out.println(lead);
+//            }
+//        }
+//
+//        public void printAllOpportunities() {
+//            for (Opportunity opportunity : opportunityRepository.findAll()) {
+//                System.out.println(opportunity);
+//            }
+//        }
+//
+//        public void printAllSalesRep() {
+//            for (SalesRep salesRep : salesRepRepository.findAll()) {
+//                System.out.println(salesRep);
+//            }
+//        }
+//
+//    }
 }

@@ -13,7 +13,6 @@ import java.util.List;
 
 
 @Entity
-
 public class Account {
 
             //
