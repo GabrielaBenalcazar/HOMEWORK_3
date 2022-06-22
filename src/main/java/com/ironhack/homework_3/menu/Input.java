@@ -78,6 +78,9 @@ public class Input {
         return null;
     }
 
+
+//    ENUMS IF MADE     // Method to convert case insensitive string (accepted in singular or plural form) to Enum
+
     public Industry chooseIndustry() {
         System.out.println("\nType of Industry:" +
                 "\n1 - Produce" +

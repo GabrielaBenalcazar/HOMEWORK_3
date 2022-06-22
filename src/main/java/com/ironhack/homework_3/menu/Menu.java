@@ -11,11 +11,11 @@ public class Menu {
     private final Output printer = new Output();
     private final Input input = new Input(printer);
     private final Creator creator = new Creator(input, printer);
-    private final FileManager fileManager = new FileManager(printer);
-
-    public Menu() {
-        fileManager.importData();
-    }
+//    private final FileManager fileManager = new FileManager(printer);
+//
+//    public Menu() {
+//        fileManager.importData();
+//    }
 
     public void controlLoop() throws InterruptedException{
         Command command;
@@ -40,7 +40,7 @@ public class Menu {
         Thread.sleep(500);
         System.out.println(Style.OCHER + "Thank you for using the cleanCRM. Have a nice day.");
         input.close();
-        fileManager.exportData();
+
     }
 
     public String[] splitInput(String string) {
@@ -99,7 +99,6 @@ public class Menu {
                 break;
             case SAVE:
                 printer.print("All objects saved to .txt files.");
-                fileManager.exportData();
                 break;
         }
     }
@@ -125,16 +124,16 @@ public class Menu {
         System.out.println("Shows all " + objectType.getPluralForm() + ".\n");
         switch (objectType) {
             case ACCOUNT:
-                printer.printAllAccounts();
+                creator.printAllAccounts();
                 break;
             case CONTACT:
-                printer.printAllContacts();
+                creator.printAllContacts();
                 break;
             case LEAD:
-                printer.printAllLeads();
+//                printer.printAllLeads();
                 break;
             case OPPORTUNITY:
-                printer.printAllOpportunities();
+//                printer.printAllOpportunities();
                 break;
         }
     }
@@ -156,21 +155,24 @@ public class Menu {
         }
     }
 
-    public void convert(int id) {
-        // When a Lead is converted, Contact, Opportunity and Account are automatically created
-        // and the Lead must be deleted.
-        System.out.println("\nConverting LEAD nº " + id + " to CONTACT, OPPORTUNITY and ACCOUNT\n");
-        Lead lead = (Lead) Lead.getById(id, Lead.getAllLeads());
-        creator.createContact(lead);
-        creator.createOpportunityByLeadConversion();
-        creator.createAccount(lead);
-        Lead.removeItem(lead);
-    }
+//    public void convert(int id) {
+//        // When a Lead is converted, Contact, Opportunity and Account are automatically created
+//        // and the Lead must be deleted.
+//        System.out.println("\nConverting LEAD nº " + id + " to CONTACT, OPPORTUNITY and ACCOUNT\n");
+//        Lead lead = (Lead) Lead.getById(id, Lead.getAllLeads());
+//        creator.createContact(lead);
+//        creator.createOpportunityByLeadConversion();
+//        creator.createAccount(lead);
+//        Lead.removeItem(lead);
+//    }
 
-    public void changeStatus(Status status, int id) {
-        System.out.println("Changes OPPORTUNITY with an id of " + id + " status to " + status + ".");
-        Opportunity opportunity = (Opportunity) Opportunity.getById(id, Opportunity.getAllOpportunities());
-        opportunity.setStatus(status);
+//    public void changeStatus(Status status, int id) {
+//        System.out.println("Changes OPPORTUNITY with an id of " + id + " status to " + status + ".");
+//        Opportunity opportunity = (Opportunity) Opportunity.getById(id, Opportunity.getAllOpportunities());
+//        opportunity.setStatus(status);
+//
+//    }
 
-    }
+
+    // MENU ENUMS IF MADE
 }
