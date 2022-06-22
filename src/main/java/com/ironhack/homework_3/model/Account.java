@@ -4,12 +4,10 @@ import com.ironhack.homework_3.enums.Industry;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -22,20 +20,21 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // = AUTO_INCREMENT
     private int id ;
     private String companyName;
+    @Enumerated(value = EnumType.STRING)
     private Industry industry;
     private int employeeCount;
     private String city;
     private String country;
-    private List<Contact> contactList = new ArrayList<>();
-    private List<Opportunity> opportunityList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "account")
+    private Set<Contact> contactList;
+    @OneToMany(mappedBy = "account")
+    private Set<Opportunity> opportunityList;
 
     // Constructor
 
-    public Account() {
 
-    }
-
-    public Account( String companyName, Industry industry, int employeeCount, String city, String country, List<Contact> contactList, List<Opportunity> opportunityList) {
+    public Account( String companyName, Industry industry, int employeeCount, String city, String country, Set<Contact> contactList, Set<Opportunity> opportunityList) {
 
         this.companyName = companyName;
         this.industry = industry;
@@ -45,6 +44,11 @@ public class Account {
         this.contactList = contactList;
         this.opportunityList = opportunityList;
     }
+
+    public Account() {
+
+    }
+
 
 
     // Methods
@@ -108,19 +112,19 @@ public class Account {
         this.country = country;
     }
 
-    public List<Contact> getContactList() {
+    public Set<Contact> getContactList() {
         return contactList;
     }
 
-    public void setContactList(List<Contact> contactList) {
+    public void setContactList(Set<Contact> contactList) {
         this.contactList = contactList;
     }
 
-    public List<Opportunity> getOpportunityList() {
+    public Set<Opportunity> getOpportunityList() {
         return opportunityList;
     }
 
-    public void setOpportunityList(List<Opportunity> opportunityList) {
+    public void setOpportunityList(Set<Opportunity> opportunityList) {
         this.opportunityList = opportunityList;
     }
 

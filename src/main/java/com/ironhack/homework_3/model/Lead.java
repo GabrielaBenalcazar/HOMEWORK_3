@@ -1,10 +1,7 @@
 package com.ironhack.homework_3.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -24,14 +21,23 @@ public class Lead  {
     private String email;
     private String companyName;
 
+    @ManyToOne
+    @JoinColumn(name = "sales_reps_id")
+    private SalesReps salesReps;
+
+
+
 
     // Constructor
 
-    public Lead(String name, String phoneNumber, String email, String companyName) {
+
+    public Lead( String name, String phoneNumber, String email, String companyName, SalesReps salesReps) {
+    
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.companyName = companyName;
+        this.salesReps = salesReps;
     }
 
     public Lead() {
@@ -102,6 +108,13 @@ public class Lead  {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+    public SalesReps getSalesReps() {
+        return salesReps;
+    }
+
+    public void setSalesReps(SalesReps salesReps) {
+        this.salesReps = salesReps;
     }
 
 

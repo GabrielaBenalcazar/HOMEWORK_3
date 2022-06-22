@@ -3,10 +3,7 @@ package com.ironhack.homework_3.model;
 
 import com.ironhack.homework_3.style.Style;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +18,11 @@ public class Contact {
     private String phoneNumber;
     private String email;
     private String companyName;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
 
 
     // Constructor
@@ -74,6 +76,13 @@ public class Contact {
         this.companyName = companyName;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
 
     @Override
     public String toString() {
