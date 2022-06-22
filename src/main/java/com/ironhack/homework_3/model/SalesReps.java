@@ -1,9 +1,7 @@
 package com.ironhack.homework_3.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 
@@ -13,7 +11,11 @@ public class SalesReps {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // = AUTO_INCREMENT
     private int id ;
     private String name;
+    @OneToMany
+    private Set<Lead> leads;
 
+    @OneToMany
+    private Set<Opportunity> opportunities;
 
 
     //Constructor

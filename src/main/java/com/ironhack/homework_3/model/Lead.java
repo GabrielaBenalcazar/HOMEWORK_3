@@ -32,7 +32,7 @@ public class Lead  {
 
 
     public Lead( String name, String phoneNumber, String email, String companyName, SalesReps salesReps) {
-    
+
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
