@@ -1,39 +1,35 @@
 package com.ironhack.homework_3.menu;
 
 import com.ironhack.homework_3.enums.*;
+import com.ironhack.homework_3.style.Style;
+import org.springframework.stereotype.Component;
+
 import java.util.Scanner;
 
-
+@Component
 public class Input {
 
     private Scanner scanner = new Scanner(System.in);
-    private Output printer;
+    private Printer printer;
 
-    public Input(Output printer) {
+    public Input(Printer printer) {
         this.printer = printer;
     }
 
     public String getString() {
-        printer.print(">");
+        System.out.print(">");
         return scanner.nextLine();
-    }
-
-    public int getInt() {
-        try {
-            return scanner.nextInt();
-        } finally {
-            scanner.nextLine();
-        }
     }
 
     public int getIntegerHigherThanZero() {
         int intValue = -1;
         do {
+            System.out.println(Style.LIGHT_GRAY + "Please input Integer higher than 0" + Style.DEFAULT);
             String input = scanner.next();
             try {
                 intValue = Integer.parseInt(input);
             } catch (NumberFormatException exp) {
-                System.out.println("Must be Integer higher than 0)");
+                System.out.println("Must be Integer higher than 0");
             }
         } while (intValue <= 0);
 
@@ -41,11 +37,33 @@ public class Input {
         return intValue;
     }
 
+    // Method to call when a yes or no question is encountered
+    public String getYesOrNo(){
+        String answer = "";
+        boolean error = false;
+
+        do {
+            String input = scanner.next();
+
+            try {
+                answer = input.toUpperCase();
+                error = Validator.isAnswerYesOrNoValid(answer);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid response.");
+            }
+
+        } while (!error);
+
+        scanner.nextLine();
+        return answer;
+    }
+
+    // Scanner closure, useful for exiting the application
     public void close() {
         scanner.close();
     }
 
-    // method to convert case insensitive string to Command Enum
+    // Method to convert case insensitive string to Command Enum
     public Command getCommandFromString(String string) {
         string = string.toUpperCase();
         for (Command command : Command.values()) {
@@ -56,38 +74,65 @@ public class Input {
         return null;
     }
 
-    // method to convert case insensitive string (in singular form) to ObjectTypes Enum
-    public ObjectType getObjectTypeFromStringSingular(String string) {
+    // Method to convert case insensitive string (accepted in singular or plural form) to ObjectTypes Enum
+    public ObjectType getObjectType(String string) {
         string = string.toUpperCase();
         for (ObjectType objectType : ObjectType.values()) {
             if (string.equals(objectType.getSingularForm())) {
                 return objectType;
-            }
-        }
-        return null;
-    }
-
-    // method to convert case insensitive string (in plural form) to ObjectTypes Enum
-    public ObjectType getObjectTypeFromStringPlural(String string) {
-        string = string.toUpperCase();
-        for (ObjectType objectType : ObjectType.values()) {
-            if (string.equals(objectType.getPluralForm())) {
+            } else if (string.equals(objectType.getPluralForm())) {
                 return objectType;
             }
         }
         return null;
     }
 
+    // Method to convert case insensitive string (accepted in singular or plural form) to ReportBy Enum
+    public ReportBy getReportBy(String string) {
+        string = string.toUpperCase();
+        for (ReportBy reportBy : ReportBy.values()) {
+            if (string.equals(reportBy.getSingularForm())) {
+                return reportBy;
+            } else if (string.equals(reportBy.getPluralForm())) {
+                return reportBy;
+            }
+        }
+        return null;
+    }
 
-//    ENUMS IF MADE     // Method to convert case insensitive string (accepted in singular or plural form) to Enum
+    // Method to convert case insensitive string (accepted in singular or plural form) to StateObject Enum
+    public StateObject getStateObject(String string) {
+        string = string.toUpperCase();
+        for (StateObject stateObject : StateObject.values()) {
+            if (string.equals(stateObject.getSingularForm())) {
+                return stateObject;
+            } else if(string.equals(stateObject.getPluralForm())) {
+                return stateObject;
+            }
+        }
+        return null;
+    }
+
+    // Method to convert case insensitive string (accepted in singular or plural form) to ReportTarget Enum
+    public ReportTarget getReportTarget(String string) {
+        string = string.toUpperCase();
+        for (ReportTarget reportTarget : ReportTarget.values()) {
+            if (string.equals(reportTarget.getSingularForm())) {
+                return reportTarget;
+            } else if (string.equals(reportTarget.getPluralForm())) {
+                return reportTarget;
+            }
+        }
+        return null;
+    }
 
     public Industry chooseIndustry() {
-        System.out.println("\nType of Industry:" +
-                "\n1 - Produce" +
-                "\n2 - E-Commerce" +
-                "\n3 - Manufacturing" +
-                "\n4 - Medical" +
-                "\n5 - Other");
+        System.out.println(
+                "1 - Produce\n" +
+                        "2 - E-Commerce\n" +
+                        "3 - Manufacturing\n" +
+                        "4 - Medical\n" +
+                        "5 - Other");
         int input;
         do {
             input = getIntegerHigherThanZero();
@@ -103,6 +148,25 @@ public class Input {
                 return Industry.MEDICAL;
             default:
                 return Industry.OTHER;
+        }
+    }
+
+    public Product chooseProduct() {
+        System.out.println(
+                "1 - HYBRID\n" +
+                        "2 - FLATBED\n" +
+                        "3 - BOX");
+        int input;
+        do {
+            input = getIntegerHigherThanZero();
+        } while (input > 3);
+        switch (input) {
+            case 1:
+                return Product.HYBRID;
+            case 2:
+                return Product.FLATBED;
+            default:
+                return Product.BOX;
         }
     }
 
