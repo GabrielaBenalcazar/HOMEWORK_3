@@ -1,8 +1,6 @@
 package com.ironhack.homework_3.model;
 
-import com.ironhack.homework_3.enums.Industry;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-
 
 import javax.persistence.*;
 import java.util.ArrayList;

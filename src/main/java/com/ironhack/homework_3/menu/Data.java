@@ -25,7 +25,7 @@ public class Data {
         this.opportunityRepository = opportunityRepository;
     }
 
-    List<SalesRep> salesRepList;
+    List<SalesReps> salesRepsList;
     List<Lead> leadList;
     List<Contact> contactList;
     List<Opportunity> opportunityList;
@@ -35,9 +35,12 @@ public class Data {
     public void populateRepos() {
 
         accountList = accountRepository.saveAll(List.of(
+                new Account
+                new Account
+
         ));
 
-        salesRepList = salesRepRepository.saveAll(List.of(
+        salesRepsList = salesRepsRepository.saveAll(List.of(
 
         ));
 

@@ -44,6 +44,24 @@ public class Creator {
 
     // Method used to create a SALES REP independently
      public void createSalesRep(){
+         System.out.println("\n" + Style.OCHER + "CREATE SALES REP" + Style.DEFAULT);
+
+         String name;
+            boolean errorName = false;
+            do {
+
+                System.out.println("\nName:");
+                name = input.getString();
+
+                try {
+                    errorName = Validator.isStringValid(name);
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Input is whether empty or too long, or it may contain not valid characters.");
+                }
+
+            } while (!errorName);
+
+
 
 
          // New SALES REP Object saved in database
