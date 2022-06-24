@@ -11,13 +11,13 @@ import java.util.List;
 public class Data {
 
     final AccountRepository accountRepository;
-    final SalesRepsRepository salesRepRepository;
+    final SalesRepsRepository salesRepsRepository;
     final ContactRepository contactRepository;
     final LeadRepository leadRepository;
     final OpportunityRepository opportunityRepository;
 
     @Autowired
-    public Data(AccountRepository accountRepository, SalesRepsRepository salesRepRepository, ContactRepository contactRepository, LeadRepository leadRepository, OpportunityRepository opportunityRepository) {
+    public Data(AccountRepository accountRepository, SalesRepsRepository salesRepsRepository, ContactRepository contactRepository, LeadRepository leadRepository, OpportunityRepository opportunityRepository) {
         this.accountRepository = accountRepository;
         this.salesRepsRepository = salesRepsRepository;
         this.contactRepository = contactRepository;

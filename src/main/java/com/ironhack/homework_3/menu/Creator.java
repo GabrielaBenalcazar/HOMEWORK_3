@@ -30,7 +30,7 @@ public class Creator {
 
         // Añadido el constructor con los repositories
     @Autowired
-    public Creator(AccountRepository accountRepository, SalesRepsRepository salesRepRepository, ContactRepository contactRepository, LeadRepository leadRepository, OpportunityRepository opportunityRepository, Input input, Printer printer) {
+    public Creator(AccountRepository accountRepository, SalesRepsRepository salesRepsRepository, ContactRepository contactRepository, LeadRepository leadRepository, OpportunityRepository opportunityRepository, Input input, Printer printer) {
         this.accountRepository = accountRepository;
         this.salesRepsRepository = salesRepsRepository;
         this.contactRepository = contactRepository;
@@ -44,8 +44,10 @@ public class Creator {
 
     // Method used to create a SALES REP independently
      public void createSalesRep(){
+        // Comunicar con la consola para pedir los datos
          System.out.println("\n" + Style.OCHER + "CREATE SALES REP" + Style.DEFAULT);
 
+         // DAtos necesarios con un loop -- do while ---
          String name;
             boolean errorName = false;
             do {
@@ -62,10 +64,13 @@ public class Creator {
             } while (!errorName);
 
 
-
-
          // New SALES REP Object saved in database
+            SalesRep salesRep = new SalesRep(name);
+            salesRepsRepository.save(salesRep);
+
          // Print a SALES REP creation message
+            System.out.println("\n" + Style.OCHER + "SALES REP CREATED" + Style.DEFAULT);
+            System.out.println(salesRep);
      }
 
     // Method used to create an ACCOUNT independently or when a LEAD is converted
