@@ -21,7 +21,7 @@ public class Input {
         return scanner.nextLine();
     }
 
-    public int getIntegerHigherThanZero() {
+    public static int getIntegerHigherThanZero() {
         int intValue = -1;
         do {
             System.out.println(Style.LIGHT_GRAY + "Please input Integer higher than 0" + Style.DEFAULT);

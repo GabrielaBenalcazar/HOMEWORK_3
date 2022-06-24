@@ -1,10 +1,8 @@
 package com.ironhack.homework_3.model;
 
-import org.springframework.boot.autoconfigure.domain.EntityScan;
+import com.ironhack.homework_3.enums.Industry;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Set;
 
 
@@ -32,7 +30,7 @@ public class Account {
     // Constructor
 
 
-    public Account( String companyName, Industry industry, int employeeCount, String city, String country, Set<Contact> contactList, Set<Opportunity> opportunityList) {
+    public Account( String companyName, Industry industry, int employeeCount, String city, String country) {
 
         this.companyName = companyName;
         this.industry = industry;
