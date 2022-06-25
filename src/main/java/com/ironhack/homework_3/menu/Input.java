@@ -21,7 +21,7 @@ public class Input {
         return scanner.nextLine();
     }
 
-    public static int getIntegerHigherThanZero() {
+    public int getIntegerHigherThanZero() {
         int intValue = -1;
         do {
             System.out.println(Style.LIGHT_GRAY + "Please input Integer higher than 0" + Style.DEFAULT);
@@ -148,25 +148,6 @@ public class Input {
                 return Industry.MEDICAL;
             default:
                 return Industry.OTHER;
-        }
-    }
-
-    public Product chooseProduct() {
-        System.out.println(
-                "1 - HYBRID\n" +
-                        "2 - FLATBED\n" +
-                        "3 - BOX");
-        int input;
-        do {
-            input = getIntegerHigherThanZero();
-        } while (input > 3);
-        switch (input) {
-            case 1:
-                return Product.HYBRID;
-            case 2:
-                return Product.FLATBED;
-            default:
-                return Product.BOX;
         }
     }
 

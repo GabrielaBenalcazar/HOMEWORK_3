@@ -2,39 +2,50 @@ package com.ironhack.homework_3.model;
 
 import javax.persistence.*;
 import java.util.Set;
-
-@Entity
-
+@Table(name = "sales_rep_table")
 public class SalesRep {
-    //Properties
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // = AUTO_INCREMENT
-    private int id ;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "sales_rep_name")
     private String name;
-    @OneToMany
-    private Set<Lead> leads;
 
-    @OneToMany
-    private Set<Opportunity> opportunities;
+    //SalesRep should have OneToMany relations with Leads and Opportunities
+    @OneToMany(mappedBy = "salesRep")
+    private Set<Lead> salesRepLeads;
+
+    @OneToMany(mappedBy = "salesRep")
+    private Set<Opportunity> salesRepOpportunities;
 
 
-    //Constructor
+    // CONSTRUCTORS
+
+    public SalesRep(Long id, String name, Set<Lead> salesRepLeads, Set<Opportunity> salesRepOpportunities) {
+        this.id = id;
+        this.name = name;
+        this.salesRepLeads = salesRepLeads;
+        this.salesRepOpportunities = salesRepOpportunities;
+    }
+
 
     public SalesRep() {
-
     }
 
     public SalesRep(String name) {
         this.name = name;
     }
 
-    // Setters-getters
 
-    public int getId() {
+    // GETTERS N SETTERS
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,13 +57,25 @@ public class SalesRep {
         this.name = name;
     }
 
-    // to string
+    public Set<Lead> getSalesRepLeads() {
+        return salesRepLeads;
+    }
+
+    public void setSalesRepLeads(Set<Lead> salesRepLeads) {
+        this.salesRepLeads = salesRepLeads;
+    }
+
+    public Set<Opportunity> getSalesRepOpportunities() {
+        return salesRepOpportunities;
+    }
+
+    public void setSalesRepOpportunities(Set<Opportunity> salesRepOpportunities) {
+        this.salesRepOpportunities = salesRepOpportunities;
+    }
 
     @Override
     public String toString() {
-        return "SalesReps{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return "=== SalesRep " + getId() + " ===" + '\n' +
+                "· name : " + name + '\n';
     }
 }

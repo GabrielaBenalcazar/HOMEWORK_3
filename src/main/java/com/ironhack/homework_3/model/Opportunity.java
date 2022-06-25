@@ -6,113 +6,98 @@ import com.ironhack.homework_3.enums.*;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
+@Table(name = "opportunities_table")
 public class Opportunity {
 
-    //Properties
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // = AUTO_INCREMENT
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Enumerated(value = EnumType.STRING)
     private Product product;
+
     private int quantity;
-    @OneToOne
-    @JoinColumn(name = "decision_maker_id")
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "decision_maker")
     private Contact decisionMaker;
-    @ManyToOne
-    @JoinColumn(name = "sales_reps_id")
-    private SalesRep salesReps;
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "opportunity_status") //"status" is an SQL keyword
     private Status status;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "sales_rep")
+    private SalesRep salesRep;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "account")
     private Account account;
 
-
-
-
     //Constructor
-
-    public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesReps, Status status) {
-
-        this.product = product;
-        this.quantity = quantity;
-        this.decisionMaker = decisionMaker;
-        this.salesReps = salesReps;
-        this.status = status;
-    }
 
 
     public Opportunity() {
     }
 
-    // Methods
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Opportunity that = (Opportunity) o;
-        return quantity == that.quantity && product == that.product && Objects.equals(decisionMaker, that.decisionMaker) && status == that.status;
+    public Opportunity(Long id, Product product, int quantity, Contact decisionMaker, Status status, SalesRep salesRep, Account account) {
+        this.id = id;
+        this.product = product;
+        this.quantity = quantity;
+        this.decisionMaker = decisionMaker;
+        this.status = status;
+        this.salesRep = salesRep;
+        this.account = account;
     }
 
-    // Setters
-
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Product getProduct() {
+        return product;
     }
 
     public void setProduct(Product product) {
         this.product = product;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     public void setQuantity(int quantity) {
-        if (quantity <= 0) {
-            throw new IllegalArgumentException("The number of trucks must be greater than zero.");
-        }
         this.quantity = quantity;
+    }
+
+    public Contact getDecisionMaker() {
+        return decisionMaker;
     }
 
     public void setDecisionMaker(Contact decisionMaker) {
         this.decisionMaker = decisionMaker;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public void setStatus(Status status) {
         this.status = status;
     }
 
-    //Getters
-
-    public Product getProduct() {
-        return this.product;
+    public SalesRep getSalesRep() {
+        return salesRep;
     }
 
-    public int getQuantity() {
-        return this.quantity;
+    public void setSalesRep(SalesRep salesRep) {
+        this.salesRep = salesRep;
     }
 
-    public Contact getDecisionMaker() {
-        return this.decisionMaker;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-    public SalesRep getSalesReps() {
-        return salesReps;
-    }
-
-    public void setSalesReps(SalesRep salesReps) {
-        this.salesReps = salesReps;
-    }
     public Account getAccount() {
         return account;
     }
@@ -121,19 +106,35 @@ public class Opportunity {
         this.account = account;
     }
 
-    public String getOpportunityInfo() {
-        return "Product: " + this.product + ". Quantity: " + this.quantity + ". STATUS: " + this.status;
+    public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesRep, Account account) {
+        setProduct(product);
+        setQuantity(quantity);
+        setDecisionMaker(decisionMaker);
+        setStatus(Status.OPEN);
+        setSalesRep(salesRep);
+        setAccount(account);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Opportunity that = (Opportunity) o;
+        return quantity == that.quantity
+                && product == that.product
+                && Objects.equals(decisionMaker, that.decisionMaker)
+                && status == that.status;
     }
 
     @Override
     public String toString() {
-        return "Opportunity{" +
-                "id=" + id +
-                ", product=" + product +
-                ", quantity=" + quantity +
-                ", decisionMaker=" + decisionMaker +
-                ", status=" + status +
-                '}';
+        return "=== Opportunity " + getId() + " ===" + '\n' +
+                "· product : " + product + '\n' +
+                "· quantity : " + quantity + '\n' +
+                "· decision maker : " + decisionMaker.getName() + " - " + decisionMaker.getCompanyName() + '\n' +
+                "· associate sales rep : " + salesRep.getName() + '\n' +
+                "· status : " + status + '\n';
     }
+
 
 }

@@ -6,47 +6,55 @@ import javax.persistence.*;
 import java.util.Set;
 
 
-@Entity
+
+@Table(name = "accounts_table")
 public class Account {
 
-            //
-
-    // Properties
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // = AUTO_INCREMENT
-    private int id ;
-    private String companyName;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Enumerated(value = EnumType.STRING)
     private Industry industry;
+
+    @Column(name = "employees")
     private int employeeCount;
+
     private String city;
+
     private String country;
 
-    @OneToMany(mappedBy = "account")
-    private Set<Contact> contactList;
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    @Column(name = "opportunity_list")
     private Set<Opportunity> opportunityList;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    @Column(name = "contact_list")
+    private Set<Contact> contactList;
 
     // Constructor
 
 
-    public Account( String companyName, Industry industry, int employeeCount, String city, String country) {
-
-        this.companyName = companyName;
+    public Account(Long id, Industry industry, int employeeCount, String city, String country, Set<Opportunity> opportunityList, Set<Contact> contactList) {
+        this.id = id;
         this.industry = industry;
         this.employeeCount = employeeCount;
         this.city = city;
         this.country = country;
-        this.contactList = contactList;
         this.opportunityList = opportunityList;
+        this.contactList = contactList;
     }
 
     public Account() {
 
     }
 
-
-
+    public Account(Industry industry, int employeeCount, String city, String country) {
+        setIndustry(industry);
+        setEmployeeCount(employeeCount);
+        setCity(city);
+        setCountry(country);
+    }
     // Methods
 
     public void addContactToList(Contact contact) {
@@ -59,21 +67,12 @@ public class Account {
 
     // Getters and setters
 
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
     }
 
     public Industry getIndustry() {
@@ -108,14 +107,6 @@ public class Account {
         this.country = country;
     }
 
-    public Set<Contact> getContactList() {
-        return contactList;
-    }
-
-    public void setContactList(Set<Contact> contactList) {
-        this.contactList = contactList;
-    }
-
     public Set<Opportunity> getOpportunityList() {
         return opportunityList;
     }
@@ -124,20 +115,24 @@ public class Account {
         this.opportunityList = opportunityList;
     }
 
+    public Set<Contact> getContactList() {
+        return contactList;
+    }
+
+    public void setContactList(Set<Contact> contactList) {
+        this.contactList = contactList;
+    }
+
+
     //to string
 
     @Override
     public String toString() {
-        return "Account{" +
-                "id=" + id +
-                ", companyName='" + companyName + '\'' +
-                ", industry=" + industry +
-                ", employeeCount=" + employeeCount +
-                ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
-                ", contactList=" + contactList +
-                ", opportunityList=" + opportunityList +
-                '}';
+        return "=== Account " + getId() + " ===" + '\n' +
+                "· industry : " + industry + '\n' +
+                "· number of employees : " + employeeCount + '\n' +
+                "· city : " + city + '\n' +
+                "· country : " + country + '\n';
     }
 }
 

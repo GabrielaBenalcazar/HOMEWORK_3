@@ -21,6 +21,24 @@ public class Printer {
 
     public void pleaseWait() {
 
+        try {
+
+            Thread.sleep(600);
+            System.out.print(Style.LIGHT_GRAY + "Please, wait.");
+            Thread.sleep(800);
+
+            int i = 0;
+            while (i < 2){
+                System.out.print(".");
+                Thread.sleep(800);
+                i++;
+            }
+
+            System.out.println(Style.DEFAULT + "");
+            Thread.sleep(600);
+
+        } catch (InterruptedException e) {
+        }
 
 
     }

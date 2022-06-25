@@ -63,10 +63,13 @@ public class Menu {
         input.close();
     }
 
+
     // Separates each word of the input
     public String[] splitInput(String string) {
         return string.trim().split(" ");
     }
+
+
 
     // Read the input and trigger the corresponding methods
     public void interpretInput(String[] inputList) throws InterruptedException {
@@ -271,7 +274,7 @@ public class Menu {
 
         Thread.sleep(800);
         leadRepository.deleteById(Long.valueOf(idLead));
-//        printer.pleaseWait();
+        printer.pleaseWait();
         System.out.println(Style.OCHER + "LEAD HAS BEEN SUCCESSFULLY CONVERTED AND DELETED\n\n" + Style.DEFAULT);
     }
 

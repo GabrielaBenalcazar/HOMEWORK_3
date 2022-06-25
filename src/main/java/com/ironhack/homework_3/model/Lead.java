@@ -6,124 +6,48 @@ import java.util.InputMismatchException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Entity
-public class Lead  {
+@Table(name = "leads_table")
+public class Lead extends Item{
 
-    // Properties
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // = AUTO_INCREMENT
-    private int id;
-    private String name;
-    private String phoneNumber;
-    private String email;
-    private String companyName;
-
-    @ManyToOne
-    @JoinColumn(name = "sales_reps_id")
-    private SalesRep salesReps;
-
-
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "sales_rep")
+    private SalesRep salesRep;
 
     // Constructor
 
 
-    public Lead( String name, String phoneNumber, String email, String companyName, SalesRep salesReps) {
-
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.companyName = companyName;
-        this.salesReps = salesReps;
+    public Lead(Long id, String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
+        super(id, name, phoneNumber, email, companyName);
+        this.salesRep = salesRep;
     }
 
     public Lead() {
 
     }
 
-//Methods
-
-//    public static void removeItem(Lead lead) {
-//        for (int i = 0; i < allLeads.size(); i++) {
-//            if (lead.equals(allLeads.get(i))) {
-//                allLeads.remove(i);
-//            }
-//        }
-//    }
-
-    // Getters and setters
-
-    // Getters and setters
-
-
-    public int getId() {
-        return id;
+    public Lead(String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
+        super(name, email, companyName, phoneNumber);
+        setSalesRep(salesRep);
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public SalesRep getSalesRep() {
+        return salesRep;
     }
 
-    public String getName() {
-        return this.name;
+    public void setSalesRep(SalesRep salesRep) {
+        this.salesRep = salesRep;
     }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhoneNumber() {
-        return this.phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setEmail(String email) {
-        try {
-            Pattern p = Pattern.compile(".+@.+\\.[a-z]+");
-            Matcher m = p.matcher(email);
-            boolean matchFound = m.matches();
-            if (matchFound) {
-                this.email = email;
-            } else {
-                throw new InputMismatchException();
-            }
-        } catch (InputMismatchException ex) {
-            System.out.println("Wrong email address");
-        }
-    }
-
-    public String getCompanyName() {
-        return this.companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-    public SalesRep getSalesReps() {
-        return salesReps;
-    }
-
-    public void setSalesReps(SalesRep salesReps) {
-        this.salesReps = salesReps;
-    }
-
 
     @Override
     public String toString() {
-        return "Lead{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", companyName='" + companyName + '\'' +
-                '}';
+        return "=== Lead " + getId() + " ===" + '\n' +
+                "· name : " + getName() + '\n' +
+                "· phone number : " + getPhoneNumber() + '\n' +
+                "· email : " + getEmail() + '\n' +
+                "· company name : " + getCompanyName() + '\n' +
+                "· associate sales rep : " + salesRep.getName() + '\n';
     }
+
+
+
 }

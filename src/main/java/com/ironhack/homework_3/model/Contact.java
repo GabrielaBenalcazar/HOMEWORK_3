@@ -1,79 +1,44 @@
 package com.ironhack.homework_3.model;
 
 
-import com.ironhack.homework_3.style.Style;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
-@Entity
-public class Contact {
+@Table(name = "contacts_table")
+public class Contact extends Item {
 
-    // Properties
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // = AUTO_INCREMENT
-    private int id;
-    private String name;
-    private String phoneNumber;
-    private String email;
-    private String companyName;
+    @OneToOne(mappedBy = "decisionMaker", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Opportunity opportunity;
 
-    @ManyToOne
-    @JoinColumn(name = "account_id")
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "account")
     private Account account;
 
 
 
     // Constructor
-
-    public Contact(String name, String phoneNumber, String email, String companyName) {
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.companyName = companyName;
+    public Contact(Long id, String name, String phoneNumber, String email, String companyName, Opportunity opportunity) {
+        super(id, name, phoneNumber, email, companyName);
+        this.opportunity = opportunity;
     }
 
     public Contact() {
-
     }
 
-
-    // Setters and getters
-
-    public int getId() {
-        return id;
+     // Constructor called when a LEAD is converted
+    public Contact(Lead lead, Account account) {
+        setName(lead.getName());
+        setPhoneNumber(lead.getPhoneNumber());
+        setEmail(lead.getEmail());
+        setCompanyName(lead.getCompanyName());
+        setAccount(account);
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Opportunity getOpportunity() {
+        return opportunity;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhoneNumber() {
-        return this.phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-    public String getCompanyName() {
-        return this.companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public void setOpportunity(Opportunity opportunity) {
+        this.opportunity = opportunity;
     }
 
     public Account getAccount() {
@@ -86,21 +51,15 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", companyName='" + companyName + '\'' +
-                '}';
+        return "=== Contact " + getId() + " ===" + '\n' +
+                "· name : " + getName() + '\n' +
+                "· phone number : " + getPhoneNumber() + '\n' +
+                "· email : " + getEmail() + '\n' +
+                "· company name : " + getCompanyName() + '\n' +
+                ". account : " +  getAccount();
     }
 
-//    public String toStringInOppClass() {
-//        return Style.DARK_GRAY + "CONTACT " + getId() + '\n' + Style.DEFAULT +
-//                "   - name : " + name + '\n' +
-//                "   - phone number : " + phoneNumber + '\n' +
-//                "   - email : " + email + '\n' +
-//                "   - company name : " + companyName;
-//    }
+
+
 }
 
