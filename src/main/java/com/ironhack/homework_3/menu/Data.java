@@ -11,15 +11,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@Service
-@Component
+@Service
+//@Component
 public class Data {
 
-    final AccountRepository accountRepository;
-    final SalesRepsRepository salesRepsRepository;
-    final ContactRepository contactRepository;
-    final LeadRepository leadRepository;
-    final OpportunityRepository opportunityRepository;
+
+    private static AccountRepository accountRepository;
+    private static SalesRepsRepository salesRepsRepository;
+    private static ContactRepository contactRepository;
+    private static LeadRepository leadRepository;
+    private static OpportunityRepository opportunityRepository;
 
     @Autowired
     public Data(AccountRepository accountRepository, SalesRepsRepository salesRepsRepository, ContactRepository contactRepository, LeadRepository leadRepository, OpportunityRepository opportunityRepository) {

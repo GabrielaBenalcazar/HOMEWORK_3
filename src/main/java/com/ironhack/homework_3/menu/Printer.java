@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-@Component
-//@Service
+//@Component
+@Service
 public class Printer {
 
         public void print(String text) {
