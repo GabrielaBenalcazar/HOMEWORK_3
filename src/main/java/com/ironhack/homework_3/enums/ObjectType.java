@@ -9,7 +9,6 @@ public enum ObjectType {
     CONTACT("CONTACT", "CONTACTS"),
     LEAD("LEAD", "LEADS"),
     OPPORTUNITY("OPPORTUNITY", "OPPORTUNITIES"),
-
     SALESREP("SALESREP", "SALESREPS");
 
 

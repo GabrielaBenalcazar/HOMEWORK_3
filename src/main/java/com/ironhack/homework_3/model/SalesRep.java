@@ -2,12 +2,14 @@ package com.ironhack.homework_3.model;
 
 import javax.persistence.*;
 import java.util.Set;
+
+@Entity
 @Table(name = "sales_rep_table")
 public class SalesRep {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "sales_rep_name")
     private String name;
@@ -22,7 +24,7 @@ public class SalesRep {
 
     // CONSTRUCTORS
 
-    public SalesRep(Long id, String name, Set<Lead> salesRepLeads, Set<Opportunity> salesRepOpportunities) {
+    public SalesRep(int id, String name, Set<Lead> salesRepLeads, Set<Opportunity> salesRepOpportunities) {
         this.id = id;
         this.name = name;
         this.salesRepLeads = salesRepLeads;
@@ -41,11 +43,11 @@ public class SalesRep {
     // GETTERS N SETTERS
 
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

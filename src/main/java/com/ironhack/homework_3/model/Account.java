@@ -5,14 +5,13 @@ import com.ironhack.homework_3.enums.Industry;
 import javax.persistence.*;
 import java.util.Set;
 
-
-
+@Entity
 @Table(name = "accounts_table")
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Enumerated(value = EnumType.STRING)
     private Industry industry;
@@ -35,7 +34,7 @@ public class Account {
     // Constructor
 
 
-    public Account(Long id, Industry industry, int employeeCount, String city, String country, Set<Opportunity> opportunityList, Set<Contact> contactList) {
+    public Account(int id, Industry industry, int employeeCount, String city, String country, Set<Opportunity> opportunityList, Set<Contact> contactList) {
         this.id = id;
         this.industry = industry;
         this.employeeCount = employeeCount;
@@ -67,11 +66,11 @@ public class Account {
 
     // Getters and setters
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

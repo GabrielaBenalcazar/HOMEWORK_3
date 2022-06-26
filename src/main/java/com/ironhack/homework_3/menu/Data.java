@@ -7,9 +7,11 @@ import com.ironhack.homework_3.repository.*;
 import com.ironhack.homework_3.style.Style;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+//@Service
 @Component
 public class Data {
 
@@ -34,6 +36,7 @@ public class Data {
     List<Opportunity> opportunityList;
     List<Account> accountList;
 
+    // When this method is called, it populates the mySQL database with some sample data
     // When this method is called, it populates the mySQL database with some sample data
     public void populateRepos() {
 

@@ -1,6 +1,8 @@
 package com.ironhack.homework_3.menu;
 import org.apache.commons.validator.routines.EmailValidator;
+import org.springframework.stereotype.Service;
 
+//@Service
 public class Validator {
 
     public static boolean isPhoneNumberValid(String phoneNumber){

@@ -6,10 +6,12 @@ import com.ironhack.homework_3.model.*;
 import com.ironhack.homework_3.enums.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
+//@Service
 @Component
 public class Menu {
 
@@ -63,13 +65,10 @@ public class Menu {
         input.close();
     }
 
-
     // Separates each word of the input
     public String[] splitInput(String string) {
         return string.trim().split(" ");
     }
-
-
 
     // Read the input and trigger the corresponding methods
     public void interpretInput(String[] inputList) throws InterruptedException {
@@ -117,9 +116,9 @@ public class Menu {
                 ReportBy reportBy = input.getReportBy(inputList[3]);
                 if (Objects.isNull(reportTarget)) {
                     printer.printTypoInfo(inputList[1]);
-                } else if (Objects.isNull(reportBy)) {
+                } else if(Objects.isNull(reportBy)) {
                     printer.printTypoInfo(inputList[3]);
-                } else if (inputList[2].equalsIgnoreCase("by")) {
+                } else if(inputList[2].equalsIgnoreCase("by")) {
                     report(reportTarget, reportBy);
                 } else {
                     printer.print("Incorrect command structure. Please try again.");
@@ -154,7 +153,7 @@ public class Menu {
             case POPULATE:
                 data = new Data(accountRepository, salesRepsRepository, contactRepository, leadRepository, opportunityRepository);
                 System.out.println(Style.LIGHT_GRAY + "\nThis operation may take some seconds");
-//                printer.pleaseWait();
+                printer.pleaseWait();
                 data.populateRepos();
                 break;
 
@@ -207,22 +206,22 @@ public class Menu {
 
     // Print an specific Object fetched from database
     public void lookup(ObjectType objectType, int id) {
-        try {
+        try{
             switch (objectType) {
                 case ACCOUNT:
-                    System.out.println(creator.getAccountRepository().findById(Long.valueOf(id)).get());
+                    System.out.println(creator.getAccountRepository().findById(id).get());
                     break;
                 case CONTACT:
-                    System.out.println(creator.getContactRepository().findById(Long.valueOf(id)).get());
+                    System.out.println(creator.getContactRepository().findById(id).get());
                     break;
                 case LEAD:
-                    System.out.println(creator.getLeadRepository().findById(Long.valueOf(id)).get());
+                    System.out.println(creator.getLeadRepository().findById(id).get());
                     break;
                 case OPPORTUNITY:
-                    System.out.println(creator.getOpportunityRepository().findById(Long.valueOf(id)).get());
+                    System.out.println(creator.getOpportunityRepository().findById(id).get());
                     break;
                 case SALESREP:
-                    System.out.println(creator.getSalesRepsRepository().findById(Long.valueOf(id)).get());
+                    System.out.println(creator.getSalesRepsRepository().findById(id).get());
                     break;
             }
         } catch (NoSuchElementException e) {
@@ -235,8 +234,8 @@ public class Menu {
     public void convert(int idLead) throws InterruptedException {
         // When a Lead is converted a Contact, Opportunity and Account are automatically created and the Lead must be deleted.
         Lead lead;
-        try {
-            lead = leadRepository.findById(Long.valueOf(idLead)).get();
+        try{
+            lead = leadRepository.findById(idLead).get();
         } catch (NoSuchElementException e) {
             System.out.println(Style.RED + "\nThe id entered does not correspond to any lead.");
             System.out.println(Style.DEFAULT + "\nPlease, select another option.");
@@ -245,7 +244,7 @@ public class Menu {
         System.out.println(Style.OCHER + "\nConverting LEAD nº " + idLead + " to CONTACT, ACCOUNT and OPPORTUNITY\n" + Style.DEFAULT);
         Thread.sleep(500);
         System.out.println("\nWould you like to create a new Account? (Y/N)");
-        while (true) {
+        while(true) {
             String answer = input.getYesOrNo();
             if (answer.equals("Y") || answer.equals("YES")) {
                 creator.createAccount();
@@ -258,7 +257,7 @@ public class Menu {
                 break;
             } else if (answer.equals("N") || answer.equals("NO")) {
                 int idAccount = creator.getExistingAccount();
-                Account account = accountRepository.findById(Long.valueOf(idAccount)).get();
+                Account account = accountRepository.findById(idAccount).get();
                 System.out.println(account);
                 Thread.sleep(800);
                 System.out.println(Style.OCHER + "\nConverting LEAD to CONTACT..." + Style.DEFAULT);
@@ -273,7 +272,7 @@ public class Menu {
         }
 
         Thread.sleep(800);
-        leadRepository.deleteById(Long.valueOf(idLead));
+        leadRepository.deleteById(idLead);
         printer.pleaseWait();
         System.out.println(Style.OCHER + "LEAD HAS BEEN SUCCESSFULLY CONVERTED AND DELETED\n\n" + Style.DEFAULT);
     }
@@ -282,18 +281,18 @@ public class Menu {
     public void changeStatus(Status status, int id) {
         Opportunity opportunity;
 
-        try {
-            opportunity = opportunityRepository.findById(Long.valueOf(id)).get();
-        } catch (NoSuchElementException e) {
+        try{
+            opportunity = opportunityRepository.findById(id).get();
+        } catch (NoSuchElementException e){
             System.out.println(Style.RED + "\nThe id entered does not correspond to any opportunity.");
             System.out.println(Style.DEFAULT + "\nPlease, select another option.");
             return;
         }
 
-        opportunityRepository.findById(Long.valueOf(id));
+        opportunityRepository.findById(id);
         opportunity.setStatus(status);
         opportunityRepository.save(opportunity);
-        System.out.println(Style.OCHER + "OPPORTUNITY with an id of " + id + " changed to " + status + ".\n" + Style.DEFAULT);
+        System.out.println(Style.OCHER + "OPPORTUNITY with an id of " + id + " changed to " + status +".\n" + Style.DEFAULT);
     }
 
     // Create a report by Sales Rep, Product, City, Country or Industry
@@ -399,7 +398,7 @@ public class Menu {
                         System.out.println(accountRepository.meanEmployeeCount());
                         break;
                     case MEDIAN:
-                        System.out.println(accountRepository.medianEmployeeCount());
+//                        System.out.println(accountRepository.medianEmployeeCount());
                         break;
                     case MAX:
                         System.out.println(accountRepository.maxEmployeeCount());
@@ -416,7 +415,7 @@ public class Menu {
                         System.out.println(opportunityRepository.meanQuantity());
                         break;
                     case MEDIAN:
-                        System.out.println(opportunityRepository.medianQuantity());
+//                        System.out.println(opportunityRepository.medianQuantity());
                         break;
                     case MAX:
                         System.out.println(opportunityRepository.maxQuantity());
@@ -435,7 +434,7 @@ public class Menu {
                         System.out.println(opportunityRepository.meanOppsPerAccount());
                         break;
                     case MEDIAN:
-                        System.out.println(opportunityRepository.medianOppsPerAccount());
+//                        System.out.println(opportunityRepository.medianOppsPerAccount());
                         break;
                     case MAX:
                         System.out.println(opportunityRepository.maxOppsPerAccount());
@@ -448,5 +447,4 @@ public class Menu {
         }
         System.out.println("\n");
     }
-
 }

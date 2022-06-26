@@ -101,13 +101,13 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Intege
     @Query(value = "SELECT AVG(quantity) FROM opportunities_table", nativeQuery = true)
     double meanQuantity();
 
-    // Median quantity of products ordered
-    @Query(value = "SELECT AVG(dd.quantity) AS median_val " +
-
-
-
-            , nativeQuery = true)
-    double medianQuantity();
+//    // Median quantity of products ordered
+//    @Query(value = "SELECT AVG(dd.quantity) AS median_val " +
+//
+//
+//
+//            , nativeQuery = true)
+//    double medianQuantity();
 
     // Maximum number of orders placed in one opportunity
     @Query(value = "SELECT MAX(quantity) FROM opportunities_table", nativeQuery = true)
@@ -124,12 +124,12 @@ public interface OpportunityRepository extends JpaRepository<Opportunity, Intege
     double meanOppsPerAccount();
 
     // Median number of Opportunities associated with an Account
-    @Query(value = "SELECT AVG(dd.opps_per_account) AS median_val "
-
-
-
-            , nativeQuery = true)
-    double medianOppsPerAccount();
+//    @Query(value = "SELECT AVG(dd.opps_per_account) AS median_val "
+//
+//
+//
+//            , nativeQuery = true)
+//    double medianOppsPerAccount();
 
     // Maximum number of Opportunities associated with an Account
     @Query(value = "SELECT MAX(a.opps_per_account) FROM (SELECT account, COUNT(account) AS opps_per_account " +

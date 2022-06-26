@@ -3,6 +3,7 @@ package com.ironhack.homework_3.model;
 
 import javax.persistence.*;
 
+@Entity
 @Table(name = "contacts_table")
 public class Contact extends Item {
 
@@ -16,7 +17,7 @@ public class Contact extends Item {
 
 
     // Constructor
-    public Contact(Long id, String name, String phoneNumber, String email, String companyName, Opportunity opportunity) {
+    public Contact(int id, String name, String phoneNumber, String email, String companyName, Opportunity opportunity) {
         super(id, name, phoneNumber, email, companyName);
         this.opportunity = opportunity;
     }
@@ -24,12 +25,18 @@ public class Contact extends Item {
     public Contact() {
     }
 
-     // Constructor called when a LEAD is converted
+    // Constructor called when a LEAD is converted
     public Contact(Lead lead, Account account) {
         setName(lead.getName());
         setPhoneNumber(lead.getPhoneNumber());
         setEmail(lead.getEmail());
         setCompanyName(lead.getCompanyName());
+        setAccount(account);
+    }
+
+    // New Contact constructor including an associated Account
+    public Contact(String name, String phoneNumber, String email, String companyName, Account account) {
+        super(name, email, companyName, phoneNumber);
         setAccount(account);
     }
 

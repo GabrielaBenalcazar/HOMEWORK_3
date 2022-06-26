@@ -10,15 +10,15 @@ import org.springframework.stereotype.Component;
 public class Main {
 
     @Autowired
-    private AccountRepository accountRepository;
+    private static AccountRepository accountRepository;
     @Autowired
-    private SalesRepsRepository salesRepsRepository;
+    private static SalesRepsRepository salesRepsRepository;
     @Autowired
-    private ContactRepository contactRepository;
+    private static ContactRepository contactRepository;
     @Autowired
-    private LeadRepository leadRepository;
+    private static LeadRepository leadRepository;
     @Autowired
-    private OpportunityRepository opportunityRepository;
+    private static OpportunityRepository opportunityRepository;
 
 
 

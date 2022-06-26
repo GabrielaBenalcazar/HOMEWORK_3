@@ -3,9 +3,11 @@ package com.ironhack.homework_3.menu;
 import com.ironhack.homework_3.enums.*;
 import com.ironhack.homework_3.style.Style;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Scanner;
 
+//@Service
 @Component
 public class Input {
 

@@ -2,10 +2,8 @@ package com.ironhack.homework_3.model;
 
 
 import javax.persistence.*;
-import java.util.InputMismatchException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+@Entity
 @Table(name = "leads_table")
 public class Lead extends Item{
 
@@ -16,7 +14,7 @@ public class Lead extends Item{
     // Constructor
 
 
-    public Lead(Long id, String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
+    public Lead(int id, String name, String phoneNumber, String email, String companyName, SalesRep salesRep) {
         super(id, name, phoneNumber, email, companyName);
         this.salesRep = salesRep;
     }

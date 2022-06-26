@@ -6,12 +6,13 @@ import com.ironhack.homework_3.enums.*;
 import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
 @Table(name = "opportunities_table")
 public class Opportunity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Enumerated(value = EnumType.STRING)
     private Product product;
@@ -40,7 +41,7 @@ public class Opportunity {
     public Opportunity() {
     }
 
-    public Opportunity(Long id, Product product, int quantity, Contact decisionMaker, Status status, SalesRep salesRep, Account account) {
+    public Opportunity(int id, Product product, int quantity, Contact decisionMaker, Status status, SalesRep salesRep, Account account) {
         this.id = id;
         this.product = product;
         this.quantity = quantity;
@@ -50,11 +51,20 @@ public class Opportunity {
         this.account = account;
     }
 
-    public Long getId() {
+    public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesRep, Account account) {
+        setProduct(product);
+        setQuantity(quantity);
+        setDecisionMaker(decisionMaker);
+        setStatus(Status.OPEN);
+        setSalesRep(salesRep);
+        setAccount(account);
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -106,14 +116,6 @@ public class Opportunity {
         this.account = account;
     }
 
-    public Opportunity(Product product, int quantity, Contact decisionMaker, SalesRep salesRep, Account account) {
-        setProduct(product);
-        setQuantity(quantity);
-        setDecisionMaker(decisionMaker);
-        setStatus(Status.OPEN);
-        setSalesRep(salesRep);
-        setAccount(account);
-    }
 
     @Override
     public boolean equals(Object o) {
