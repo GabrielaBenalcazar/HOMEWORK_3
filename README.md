@@ -30,7 +30,6 @@ This CRM will help you:
 
 <br><br>
 ## · Getting started<br><br>
-## · Getting started
 
 <br>
 1. Clone 
