@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-//@Component
-@Service
+@Component
 public class Printer {
 
         public void print(String text) {
@@ -49,8 +48,10 @@ public class Printer {
 
         public void welcomeMessage() {
             print("\n\n============================================================");
-            print("\n\n========== Welcome to the best CRM!=========================");
-            print("\n\nTo start using our CRM, or if you don't know what you are doing here. Type \"HELP\" for instructions");
+            print("\n\n========== WELCOME TO OUR AWESOME CRM!=========================");
+            print("\n\nTo start using our CRM, or if you don't know what you are doing here:");
+            print("\n\nType \"HELP\" for instructions.__ . Next type \"POPULATE\" to fill the database");
+
         }
 
         public void helpPage(){
@@ -66,12 +67,13 @@ public class Printer {
             System.out.println(Style.LIGHT_PURPLE + " CLOSE-WON <OPPORTUNITY Id Number>            " + Style.LIGHT_GRAY + "Changes the selected OPPORTUNITY status to CLOSE-WON");
             System.out.println(Style.LIGHT_PURPLE + " CLOSE-LOST <OPPORTUNITY Id Number>           " + Style.LIGHT_GRAY + "Changes the selected OPPORTUNITY status to CLOSE-LOST");
             System.out.println(Style.LIGHT_PURPLE + " OPEN <OPPORTUNITY Id Number>                 " + Style.LIGHT_GRAY + "Changes the selected OPPORTUNITY status to OPEN");
-            System.out.println(Style.LIGHT_PURPLE + " MEAN/MEDIAN/MAX/MIN EMPLOYEECOUNT            " + Style.LIGHT_GRAY + "Displays the stats related to the number of employees of all the registered companies");
-            System.out.println(Style.LIGHT_PURPLE + " MEAN/MEDIAN/MAX/MIN QUANTITY                 " + Style.LIGHT_GRAY + "Displays the stats related to the quantity of products ordered");
-            System.out.println(Style.LIGHT_PURPLE + " MEAN/MEDIAN/MAX/MIN OPPORTUNITY              " + Style.LIGHT_GRAY + "Displays the stats related to the number of Opportunities associated with an Account");
+            System.out.println(Style.LIGHT_PURPLE + " MEAN/MAX/MIN EMPLOYEECOUNT            " + Style.LIGHT_GRAY + "Displays the stats related to the number of employees of all the registered companies");
+            System.out.println(Style.LIGHT_PURPLE + " MEAN/MAX/MIN QUANTITY                 " + Style.LIGHT_GRAY + "Displays the stats related to the quantity of products ordered");
+            System.out.println(Style.LIGHT_PURPLE + " MEAN/MAX/MIN OPPORTUNITY              " + Style.LIGHT_GRAY + "Displays the stats related to the number of Opportunities associated with an Account");
             System.out.println(Style.LIGHT_PURPLE + " POPULATE                                     " + Style.LIGHT_GRAY + "Populate the database with some sample data");
             System.out.println(Style.LIGHT_PURPLE + " HELP                                         " + Style.LIGHT_GRAY + "Displays this help info");
             System.out.println(Style.LIGHT_PURPLE + " EXIT                                         " + Style.LIGHT_GRAY + "Terminates the cleanCRM program" + Style.DEFAULT);
+
             System.out.println("\n Object Types Available ->" + Style.LIGHT_PURPLE + "                    LEAD / CONTACT / OPPORTUNITY / ACCOUNT / SALESREP");
             System.out.println(Style.DEFAULT + " Report Targets Available ->" + Style.LIGHT_PURPLE + "                  LEAD /  OPPORTUNITY / CLOSED-WON / CLOSED-LOST / OPEN");
             System.out.println(Style.DEFAULT + " Report By Objects Available ->" + Style.LIGHT_PURPLE + "               SALESREP /  PRODUCT / COUNTRY / CITY / INDUSTRY\n");

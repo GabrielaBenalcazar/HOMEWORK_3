@@ -16,14 +16,13 @@ import java.util.NoSuchElementException;
 @Getter
 @Setter
 
-@Service
-//@Component
+@Component
 public class Creator {
 
-    private static AccountRepository accountRepository;
-    private static SalesRepsRepository salesRepsRepository;
-    private static ContactRepository contactRepository;
-    private static LeadRepository leadRepository;
+    private AccountRepository accountRepository;
+    private SalesRepsRepository salesRepsRepository;
+    private ContactRepository contactRepository;
+    private LeadRepository leadRepository;
     private OpportunityRepository opportunityRepository;
 
     @Autowired

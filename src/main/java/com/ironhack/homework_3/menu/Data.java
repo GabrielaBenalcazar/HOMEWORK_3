@@ -11,16 +11,16 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-//@Component
+
+@Component
 public class Data {
 
 
-    private static AccountRepository accountRepository;
-    private static SalesRepsRepository salesRepsRepository;
-    private static ContactRepository contactRepository;
-    private static LeadRepository leadRepository;
-    private static OpportunityRepository opportunityRepository;
+    private AccountRepository accountRepository;
+    private SalesRepsRepository salesRepsRepository;
+    private ContactRepository contactRepository;
+    private LeadRepository leadRepository;
+    private OpportunityRepository opportunityRepository;
 
     @Autowired
     public Data(AccountRepository accountRepository, SalesRepsRepository salesRepsRepository, ContactRepository contactRepository, LeadRepository leadRepository, OpportunityRepository opportunityRepository) {
@@ -37,7 +37,6 @@ public class Data {
     List<Opportunity> opportunityList;
     List<Account> accountList;
 
-    // When this method is called, it populates the mySQL database with some sample data
     // When this method is called, it populates the mySQL database with some sample data
     public void populateRepos() {
 

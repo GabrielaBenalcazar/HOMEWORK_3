@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Scanner;
 
-@Service
-//@Component
+
+@Component
 public class Input {
 
     private Scanner scanner = new Scanner(System.in);

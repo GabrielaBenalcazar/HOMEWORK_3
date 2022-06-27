@@ -10,26 +10,20 @@ import java.util.List;
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
-        //    The mean employeeCount can be displayed by typing “Mean EmployeeCount”
-        @Query("SELECT AVG(employeeCount) FROM Account")
-        Integer  meanEmployeeCount();
+        // Mean number of employees of all the registered companies
+        @Query(value = "SELECT AVG(employees) FROM accounts_table", nativeQuery = true)
+        int meanEmployeeCount();
 
-        //    The median employeeCount can be displayed by typing “Median EmployeeCount”
-        @Query("SELECT employeeCount AS ec FROM Account " +  "ORDER BY ec")
-        List<Integer> EmployeeCountList();
+        // Median number of employees of all registered companies
+//        @Query(value = int medianEmployeeCount();
 
-//        int medianEmployeeCount(); ????????????
+        // Number of employees of the registered company with more staff
+        @Query(value = "SELECT MAX(employees) FROM accounts_table", nativeQuery = true)
+        int maxEmployeeCount();
 
-
-        //    The maximum employeeCount can be displayed by typing “Max EmployeeCount”
-        @Query("SELECT MAX(employeeCount) FROM Account")
-        Integer maxEmployeeCount();
-
-        //    The minimum employeeCount can be displayed by typing “Min EmployeeCount”
-        @Query("SELECT MIN(employeeCount) FROM Account")
-        Integer minEmployeeCount();
-
-
+        // Number of employees of the registered company with fewer staff
+        @Query(value = "SELECT MIN(employees) FROM accounts_table", nativeQuery = true)
+        int minEmployeeCount();
 
 
 }
