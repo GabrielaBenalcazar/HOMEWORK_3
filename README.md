@@ -45,8 +45,9 @@ Our lovely <b>CRM</b> is a very intuitive application, however, if you are using
 doubts about what the commands are. If so, please type "HELP" for further information.
 We recommend a "POPULATE" command to fill the database with some data 
 
-Just like the beatles "Help! I need somebody! Help!"
-![Alt Text](https://tenor.com/es/ver/villanelle-killing-eve-help-gif-14647548)
+
+![Alt Text](https://tenor.com/es/ver/villanelle-killing-eve-help-gif-14647548.gif)
+
 
 
 
@@ -84,10 +85,10 @@ Report By Objects Available ->               SALESREP /  PRODUCT / COUNTRY / CIT
 
 
 ### Class Diagram
-![Class diagram](src/main/java/com/ironhack/homework3/img/ClassDiagram.png?raw=true "Class diagram")
+![Class diagram](src/main/java/com/ironhack/homework3/img/ClassDiagram.png?raw=true)
 
 ### Use Case Diagram
-![Use case diagram](src/main/java/com/ironhack/homework3/img/UseCaseDiagram.png?raw=true "Use case diagram")
+![Use case diagram](src/main/java/com/ironhack/homework3/img/UseCaseDiagram.png?raw=true)
 
 
 ### TEAM-GALS
