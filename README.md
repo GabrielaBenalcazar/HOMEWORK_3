@@ -85,10 +85,11 @@ Report By Objects Available ->               SALESREP /  PRODUCT / COUNTRY / CIT
 
 
 ### Class Diagram
-![Class diagram](src/main/java/com/ironhack/homework3/img/ClassDiagram.png?raw=true)
+![Class diagram](https://github.com/GabrielaBenalcazar/HOMEWORK_3/blob/main/src/main/java/com/ironhack/homework_3/img/ClassDiagram.png)
+  
 
 ### Use Case Diagram
-![Use case diagram](src/main/java/com/ironhack/homework3/img/UseCaseDiagram.png?raw=true)
+![Use case diagram](https://github.com/GabrielaBenalcazar/HOMEWORK_3/blob/main/src/main/java/com/ironhack/homework_3/img/UseCaseDiagram.png)
 
 
 ### TEAM-GALS
