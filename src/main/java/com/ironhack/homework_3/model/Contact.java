@@ -14,6 +14,11 @@ public class Contact extends Item {
     @JoinColumn(name = "account")
     private Account account;
 
+    public Contact(int id, String name, String phoneNumber, String email, String companyName, Opportunity opportunity, Account account) {
+        super(id, name, phoneNumber, email, companyName);
+        this.opportunity = opportunity;
+        this.account = account;
+    }
 
 
     // Constructor

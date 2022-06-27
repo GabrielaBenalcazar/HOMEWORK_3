@@ -11,15 +11,15 @@ import org.springframework.stereotype.Service;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-//@Service
 @Component
 public class Menu {
 
-    final AccountRepository accountRepository;
-    final SalesRepsRepository salesRepsRepository;
-    final ContactRepository contactRepository;
-    final LeadRepository leadRepository;
-    final OpportunityRepository opportunityRepository;
+
+    private AccountRepository accountRepository;
+    private SalesRepsRepository salesRepsRepository;
+    private ContactRepository contactRepository;
+    private LeadRepository leadRepository;
+    private OpportunityRepository opportunityRepository;
 
     @Autowired
     Data data;
